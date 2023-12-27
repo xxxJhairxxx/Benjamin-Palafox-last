@@ -21,6 +21,24 @@
   
 }
 
+.infoheader-links li:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: white;
+    right: calc(-5rem * var(--scale));
+  
+}
+
+.infoheader-links li:last-child {
+
+      &::after{
+        display: none;
+      }
+  
+}
+
 .infoheader li {
   font-size: calc(1.6rem * var(--scale));
   line-height: calc(2.94rem * var(--scale));
@@ -29,4 +47,6 @@
   display: flex;
   align-items: center;
   gap: calc(1rem * var(--scale));
+  position: relative;
+
 }

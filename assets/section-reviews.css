@@ -420,7 +420,7 @@
   line-height: 1.85rem;
   color: #4E4E4E;
   text-align: center;
-
+  
     @media (min-width: 1200px) {
       font-size: calc(1.7rem * var(--scale));
       line-height: calc(2.09rem * var(--scale));
@@ -429,4 +429,6 @@
    }
 }
 
-
+.reviews-list__item.grid__item.slider__slide{
+  background: #F8F6F3;
+}

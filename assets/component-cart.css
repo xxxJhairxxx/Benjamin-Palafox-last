@@ -137,10 +137,6 @@ cart-items {
     border: 0;
   }
 
-  .cart__footer-wrapper {
-    padding-bottom: 5rem;
-  }
-
   .cart__footer-wrapper:last-child {
     padding-top: 0;
   }
@@ -176,7 +172,7 @@ cart-items {
   margin: 0;
 }
 
-.cart__dynamic-checkout-buttons div[role="button"] {
+.cart__dynamic-checkout-buttons div[role='button'] {
   border-radius: var(--buttons-radius-outset) !important;
 }
 

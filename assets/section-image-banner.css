@@ -74,7 +74,7 @@
   }
 
   .banner--large:not(.banner--mobile-bottom):not(.banner--adapt) .banner__content {
-    min-height: 85vh;
+    min-height: 39rem;
   }
 }
 
@@ -338,7 +338,7 @@
 
 .banner__box {
   padding-inline: 3.5rem;
-  padding-top: 8.5rem;
+  padding-top: 7rem;
   position: relative;
   height: fit-content;
   align-items: center;
@@ -483,23 +483,4 @@
   .banner--desktop-transparent .rte a:hover {
     color: currentColor;
   }
-}
-
-.banner--large:not(.banner--adapt) {
-    min-height: 20rem !important;
-
-   @media (min-width: 768px) {
-     
-   }
-
-   @media (min-width: 1200px) {
-    min-height: 50rem !important;
-
-   }
-
-   @media (min-width: 1700px) {
-    min-height: 80rem !important;
-
-   }
-  
 }

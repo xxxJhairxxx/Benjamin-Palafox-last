@@ -8,6 +8,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -120,7 +121,7 @@
         --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
         --media-shadow-visible: {% if settings.media_shadow_opacity > 0 %}1{% else %}0{% endif %};
 
-        --page-width: calc(150rem* var(--scale));
+        --page-width: {{ settings.page_width | divided_by: 10 }}rem;
         --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
 
         --product-card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
@@ -258,8 +259,8 @@
       {{ settings.title_font | font_face }}
       {{ settings.bodySemibold_font | font_face }}
       {{ settings.bodyRegular_font | font_face }}
-
-
+  
+      
       :root {
           --bannerFont: {{ settings.banner_font.family }};
           --banner2Font: {{ settings.banner2_font.family }};
@@ -267,12 +268,15 @@
           --bodySemiboldFont: {{ settings.bodySemibold_font.family }};
           --bodyRegularFont: {{ settings.bodyRegular_font.family }};
 
-
+        
           --bannerFontWeight: {{ settings.banner_font.weight }};
       }
+
+      
+
+  
     </style>
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'Faqs.amg.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -303,10 +307,7 @@
     </script>
   </head>
 
-  <body
-    style="background-color: #F8F6F3;"
-    class="gradient{% if settings.animations_hover_elements != 'none' %}  animate--hover-{{ settings.animations_hover_elements }}{% endif %} {{ page_title | handle }} {{ template.name }}"
-  >
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} {{ page_title | handle }} {{ template.name }}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -317,12 +318,7 @@
 
     {% sections 'header-group' %}
 
-    <main
-      id="MainContent"
-      class="content-for-layout focus-none {% if request.path =="/cart" %}cart_page_ultimate{% endif %}"
-      role="main"
-      tabindex="-1"
-    >
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 

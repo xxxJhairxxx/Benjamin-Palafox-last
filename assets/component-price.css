@@ -15,12 +15,7 @@
 }
 
 .price--end {
-  text-align: left;
-  font-weight: bold;
-  font-size: 1.7rem;
-  &::after {
-    content: "USD";
-  }
+  text-align: right;
 }
 
 .price .price-item {
