@@ -3770,21 +3770,8 @@ details-disclosure > details {
 
 .list-menu.list-menu--inline li {
   @media (min-width: 1200px) {
-    padding-inline: calc(1rem * var(--scale)) !important;
-  }
-}
-
-.list-menu.list-menu--inline li a {
-  text-decoration: none !important;
-
-  &:hover {
-    text-decoration: none !important;
-  }
-}
-
-.list-menu.list-menu--inline li span {
-  @media (min-width: 1200px) {
     color: #025159;
+    padding-inline: calc(1rem * var(--scale)) !important;
   }
 }
 

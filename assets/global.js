@@ -972,21 +972,7 @@ class VariantSelects extends HTMLElement {
     }
   }
 
-  updateOptions() {
-    this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
-  }
-
-  updateMasterId() {
-    this.currentVariant = this.getVariantData().find((variant) => {
-      return !variant.options
-        .map((option, index) => {
-          return this.options[index] === option;
-        })
-        .includes(false);
-    });
-  }
-
-
+  
   filterMedia() {
     
          $('[thumbnail-color]').hide();
@@ -1000,6 +986,20 @@ class VariantSelects extends HTMLElement {
       $(selected_attribute).show();
 
     } }
+
+  updateOptions() {
+    this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+  }
+
+  updateMasterId() {
+    this.currentVariant = this.getVariantData().find((variant) => {
+      return !variant.options
+        .map((option, index) => {
+          return this.options[index] === option;
+        })
+        .includes(false);
+    });
+  }
 
   updateMedia() {
     if (!this.currentVariant) return;

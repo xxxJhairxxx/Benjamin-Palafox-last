@@ -20,12 +20,15 @@ quantity-popover volume-pricing li {
   z-index: 2;
   position: absolute;
   background-color: rgb(var(--color-background));
+
   max-width: 36rem;
 }
 
 .quantity-popover__info .button-close,
 .variant-remove-total quick-order-list-remove-all-button .button,
-.quick-order-list-total__confirmation quick-order-list-remove-all-button .button,
+.quick-order-list-total__confirmation
+  quick-order-list-remove-all-button
+  .button,
 quantity-popover quick-order-list-remove-button .button {
   --shadow-opacity: 0;
   --border-opacity: 0;
@@ -91,7 +94,7 @@ quantity-popover quick-order-list-remove-button .button {
   justify-content: flex-end;
 }
 
-.quantity-popover__info .volume-pricing-label~.button {
+.quantity-popover__info .volume-pricing-label ~ .button {
   top: -0.2rem;
 }
 
@@ -111,7 +114,10 @@ quantity-popover .quantity__rules span:first-of-type {
 
 .quantity-popover-container {
   display: flex;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0.5rem 0.5rem 0.5rem;
+  border-radius: 2rem;
+  height: 3rem;
+  border: solid 1px var(--gray-200);
 }
 
 .quantity-popover-container:not(.quantity-popover-container--hover) {
@@ -147,7 +153,7 @@ quantity-popover:has(.quantity__input:focus-visible) .quantity-popover__info {
 }
 
 quantity-popover .quantity {
-  background: rgb(var(--color-background));
+  background: transparent;
 }
 
 quantity-popover .quantity__rules {
@@ -160,5 +166,5 @@ quantity-popover .quantity__rules .divider:nth-child(2)::before {
 
 quantity-popover .quantity__button:not(:focus-visible):not(.focused),
 quantity-popover .quantity__input:not(:focus-visible):not(.focused) {
-  background-color: initial;
+  max-height: 3rem;
 }

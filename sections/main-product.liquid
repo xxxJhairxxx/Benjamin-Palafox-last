@@ -41,6 +41,20 @@
     <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+     // Selecciona el primer párrafo y la sección por su clase
+     var description = document.getElementsByClassName('table-description')[0];
+     var section = document.getElementsByClassName('product-popup-modal__content')[0];
+
+     // Verifica que los elementos sean válidos antes de intentar mover el párrafo
+     if (description && section) {
+        // Mueve el párrafo a la sección
+        section.appendChild(description);
+     }
+    });
+  </script>
+
   {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
   {%- if first_3d_model -%}
     {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
@@ -62,6 +76,9 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
+    <div class='modal-view'>
+      <p>Quick View</p>
+    </div>
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       {% render 'product-media-gallery', variant_images: variant_images %}
@@ -547,7 +564,57 @@
       </div>
     {%- endif -%}
   </div>
+  
+  <table class="table-description">
+  {% assign description_sizes = product.metafields.custom.sizes_head.value %}
+  {% if description_sizes %}
+    <tr class='table-row size'>
+      <td class='table-cell'>
+        <div class='cellCont'>
+          Flat Lay Measurements
+        </div>
+      </td>
+      {% for size in description_sizes %}
+        <td class='table-cell'>
+          <div class='cellCont'>
+            {{ size }}
+          </div>
+         </td>
+      {% endfor %}
+    </tr>
+  {% endif %}
+    
+  {% assign description_sizes = product.metafields.custom %}
+  {% assign count = 0 %}
+  {% if description_sizes %}
+      
+    {% assign size_count = description_sizes.sizes_detaills.value.size %}
+    {% for item in description_sizes.sizes_detaills.value %}
+          
+      {% assign index = forloop.index0 | modulo: 5 %}
+      {% assign count = forloop.index0 | divided_by: 5 %}
+        
+      {% if index == 0 %}
+         <tr class='table-row desc'>
+          <td class='table-cell'>
+           <div class='cellCont'>
+            {{ description_sizes.description_sizes.value[count] }}   
+           </div>
+          </td>  
+      {% endif %}
+           <td class='table-cell'>
+            <div class='cellCont'>{{ item }}</div>
+           </td>  
+      {% if index == 5 or forloop.last %}
+         </tr>
+      {% endif %}
+    {% endfor %}
+      
+  {% endif %}
 
+  </table>
+
+                          
   {% render 'product-media-modal' variant_images: variant_images %}
 
   {% assign popups = section.blocks | where: 'type', 'popup' %}
@@ -560,6 +627,9 @@
         class="product-popup-modal__content"
         tabindex="-1"
       >
+          <div class='modal-size'>
+            <p>Size Guide</p>
+          </div>
         <button
           id="ModalClose-{{ block.id }}"
           type="button"

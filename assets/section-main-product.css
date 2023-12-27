@@ -891,11 +891,13 @@ a.product__text {
   border-radius: var(--popup-corner-radius);
   background-color: rgb(var(--color-background));
   overflow: auto;
-  height: 80%;
+  /* height: 80%; */
+  height: 65%;
   margin: 0 auto;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
+  margin-top: 14rem;
   width: 92%;
   position: absolute;
   top: 0;
@@ -923,7 +925,8 @@ a.product__text {
   .product-popup-modal__content {
     padding-right: 1.5rem;
     margin-top: 10rem;
-    width: 70%;
+    /* width: 70%; */
+    width: 50%;
     padding: 0 3rem;
   }
 
@@ -974,7 +977,20 @@ a.product__text {
 }
 
 .product-popup-modal__content-info {
-  padding-right: 4.4rem;
+  padding: 1.5rem;
+  display: none;
+}
+
+.product-popup-modal__content-info h1{
+  color: #025159;
+  font-family: var(--bodyFont);
+  font-size: 1.6rem;
+  line-height: 1.98rem;
+
+   @media (min-width: 1200px) {
+        font-size: calc(1.6rem * var(--scale));
+        line-height: calc(1.98rem * var(--scale));
+    }
 }
 
 .product-popup-modal__content-info > * {
@@ -991,7 +1007,7 @@ a.product__text {
 }
 
 .product-popup-modal__toggle {
-  background-color: rgb(var(--color-background));
+  /* background-color: rgb(var(--color-background));
   border: 0.1rem solid rgba(var(--color-foreground), 0.1);
   border-radius: 50%;
   color: rgba(var(--color-foreground), 0.55);
@@ -1004,7 +1020,27 @@ a.product__text {
   z-index: 2;
   top: 1.5rem;
   width: 4rem;
-  margin: 0 0 0 auto;
+  margin: 0 0 0 auto; */
+  background-color: rgb(var(--color-background));
+  background-color: #FFF0C9;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  border-radius: 0.45rem;
+  color: rgba(var(--color-foreground), 0.55);
+  color: #025159;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 1.2rem;
+  z-index: 5;
+  width: 4rem;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+
+    @media (min-width: 1200px) {
+      top: calc(1.75rem * var(--scale));
+    }
 }
 
 .product-popup-modal__toggle:hover {

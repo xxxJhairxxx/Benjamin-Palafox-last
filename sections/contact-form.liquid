@@ -4,7 +4,12 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+ 
+    font-weight: 700;
+
   }
+
+
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -12,28 +17,173 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .Contact_container{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 1200px) {
+      flex-direction: row;
+    }
+
+    & .Contact_container_details{
+          heigth:100%;
+           @media screen and (min-width: 1200px) {
+              padding-inline: calc(7rem * var(--scale));   
+              width:42%;
+      
+          }
+          
+          .Contact_container_details_title{
+              text-transform:uppercase;
+              
+              color: var(--primary);
+              font-family: var(--titleFont);
+              font-size:2.5rem;
+              margin-block:1rem;
+              @media screen and (min-width: 1200px) {
+              font-size: calc(3rem * var(--scale));}
+              
+
+          }
+
+          & > p{
+            font-weight: 400;
+            font-size:1.7rem;
+            @media screen and (min-width: 1200px) {
+              margin-bottom:calc(5rem * var(--scale));}
+             font-size: calc(1.8rem * var(--scale));
+          }
+
+          
+    }
+
+    & .Contact_container_form{
+        
+         
+         border-radius:2rem;
+
+         @media screen and (min-width: 1200px) {
+          padding:5%;
+          background-color: white;
+         width: calc(80.1rem * var(--scale));
+          }
+
+
+         & .field {
+          &:after{
+              box-shadow:none;
+          }
+
+          .field__input{
+            border: #A6A6A6 solid 1px;
+            border-radius:1.1rem;
+            @media screen and (min-width: 1200px) {
+              font-size: calc(1.7rem * var(--scale));
+            }
+
+            &:focus{
+              border: #A6A6A6 solid 2px;
+              box-shadow:none;
+            }
+            
+          }
+          & > label{
+              color: #A6A6A6 !important;
+              font-family: arial;
+             font-weight: 500 !important;
+
+            }
+            
+         }
+        }
+  }
+
+  .ContactCard{
+      display: none;
+      
+       @media screen and (min-width: 1200px) {
+        display:flex;
+      }
+      align-items:center;
+      gap: calc(2.5rem * var(--scale));
+      margin-bottom: calc(2rem * var(--scale));
+    .ContactCard_thumb{
+      background: var(--primary);
+      width: calc(6.3rem * var(--scale));
+      height: calc(6.3rem * var(--scale));
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      border-radius: calc(1rem * var(--scale));
+      padding: calc(1rem * var(--scale));
+    }
+    .ContactCard_description{
+      display :flex;
+      flex-direction: column;
+      justify-content:center;
+      gap:calc(0.2rem * var(--scale));
+      h3,p{
+        margin:0px;
+        font-family: var(--bodyFont);
+         font-size: calc(1.9rem * var(--scale));
+      }
+
+      p{
+         font-size: calc(1.7rem * var(--scale));
+         font-weight: 400;
+      }
+
+   
+    }
+
+  }
+  
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {{ section.settings.heading }}
-      </h2>
-    {%- else -%}
-      <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
-    {%- endif -%}
-    {%- liquid
-      assign contact_form_class = 'isolate'
-      if settings.animations_reveal_on_scroll
-        assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
-      endif
-    -%}
-    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+<div class="container2">
+  <div class="contact page-width  section-{{ section.id }}-padding " >
+
+
+<div  class="Contact_container">
+    <div class=" Contact_container_details">
+   <h3 class="Contact_container_details_title">{{section.settings.heading}}</h3> 
+    {{section.settings.description}} 
+
+
+{% for bloq in section.blocks %}
+
+  <section class="ContactCard">
+
+        <picture class="ContactCard_thumb">    
+              <img
+                  srcset="{{ bloq.settings.iconSvg | image_url: width: bloq.settings.iconSvg_width }}, {{ bloq.settings.iconSvg | image_url: width: bloq.settings.iconSvg }} 2x"
+                  src="{{ bloq.settings.iconSvg}}"
+                  alt="{{ bloq.settings.iconSvg.alt | escape }}"
+                  loading="lazy"
+                  width="{{ bloq.settings.iconSvg.width }}"
+                  height="{{ bloq.settings.iconSvg.height }}"
+              >
+          </picture>
+
+          <div class="ContactCard_description">
+                  <h3>{{bloq.settings.titleCard}}</h3>
+
+                  <p>{{bloq.settings.decriptionCard}}</p>
+          </div>
+  </section>
+
+{% endfor %}
+        
+          
+   
+   </div>
+
+    {%- form 'contact', id: 'ContactForm', class: 'Contact_container_form' -%}
       {%- if form.posted_successfully? -%}
         <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
           {% render 'icon-success' %}
           {{ 'templates.contact.form.post_success' | t }}
+          
         </h2>
       {%- elsif form.errors -%}
         <div class="form__message">
@@ -53,9 +203,10 @@
       {%- endif -%}
       <div class="contact__fields">
         <div class="field">
+          
           <input
             class="field__input"
-            autocomplete="name"
+            autocomplete="given-name"
             type="text"
             id="ContactForm-name"
             name="contact[{{ 'templates.contact.form.name' | t }}]"
@@ -63,6 +214,19 @@
             placeholder="{{ 'templates.contact.form.name' | t }}"
           >
           <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+        </div>
+         <div class="field">
+          
+          <input
+            class="field__input"
+            autocomplete="family-name"
+            type="text"
+            id="ContactForm-lastname"
+            name="contact[{{ 'templates.contact.form.lastname' | t }}]"
+            value="{% if form.lastname %}{{ form.lastname }}{% elsif customer %}{{ customer.lastname }}{% endif %}"
+            placeholder="{{ 'templates.contact.form.lastname' | t }}"
+          >
+          <label class="field__label" for="ContactForm-lastname">{{ 'templates.contact.form.lastname' | t }}</label>
         </div>
         <div class="field field--with-error">
           <input
@@ -96,8 +260,7 @@
             </small>
           {%- endif -%}
         </div>
-      </div>
-      <div class="field">
+        <div class="field">
         <input
           type="tel"
           id="ContactForm-phone"
@@ -110,6 +273,8 @@
         >
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
       </div>
+      </div>
+      
       <div class="field">
         <textarea
           rows="10"
@@ -124,12 +289,13 @@
           {{- 'templates.contact.form.comment' | t -}}
         </label>
       </div>
-      <div class="contact__button">
-        <button type="submit" class="button">
+      
+        <button type="submit" class="contact__button">
           {{ 'templates.contact.form.send' | t }}
         </button>
       </div>
     {%- endform -%}
+     </div>
   </div>
 </div>
 
@@ -147,6 +313,11 @@
       "id": "heading",
       "default": "Contact form",
       "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "description"
     },
     {
       "type": "select",
@@ -198,6 +369,28 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
+  ],
+  "blocks": [
+    {
+    "name": "ContactCards",
+    "type": "box",
+    "settings":[
+      {
+          "id": "iconSvg",
+          "type": "image_picker",
+          "label": "icono"
+        },
+        {
+          "id": "titleCard",
+          "type": "text",
+          "label": "title"
+        },
+        {
+          "id": "decriptionCard",
+          "type": "text",
+          "label": "description"
+        }]
+      }
   ],
   "presets": [
     {
