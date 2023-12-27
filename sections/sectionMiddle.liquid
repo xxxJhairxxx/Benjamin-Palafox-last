@@ -1,0 +1,82 @@
+
+
+
+<!-- Welcome section starts -->
+
+
+<section class="believeMiddle">
+<h2> <span>{{ section.settings.titleStartMiddle }}</span> {{ section.settings.titleEndMiddle }} </h2>
+  {{ section.settings.titleContentMiddle }}
+</section>
+
+
+
+
+{% stylesheet %}
+
+  .believeMiddle{ 
+    text-align:center;
+    
+    h2{
+    font-size: 1.8rem;
+    line-height: 2.25rem;
+    text-transform: uppercase;
+    color:white;
+
+      span{
+        color: var(--secondary);
+      }
+    }
+
+    p{
+    color:white;
+    }
+
+     @media (min-width: 1200px) {
+      
+      line-height: calc(4.38rem * var(--scale));
+       
+       h2{
+         font-size: calc(3rem * var(--scale));
+       }
+
+       p{
+         font-size: calc(2.2rem * var(--scale)) !important;
+         width:calc(80rem * var(--scale));
+         line-height: calc(3.5rem * var(--scale));
+         margin-inline:auto;
+       }
+  
+  }
+  
+  }
+{% endstylesheet %}
+<!-- Welcome section ends -->
+{% schema %}
+{
+"name": "SectionMiddle",
+"settings": [
+  {
+    "id": "titleStartMiddle",
+    "type": "text",
+    "label": "Titulo destacado"
+  },
+   {
+    "id": "titleEndMiddle",
+    "type": "text",
+    "label": "Titulo"
+  },
+  {
+    "id": "titleContentMiddle",
+    "type": "richtext",
+    "label": "Description"
+  }
+],
+"presets": [
+{
+"name": "SectionMiddle",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+
+
+
+
+.BannerPageInter{
+  background: var(--primary);
+  background-image: url("./bannerbg.png");
+  padding-block: 4rem; 
+  padding-inline:3rem;
+  background-position:center;
+  background-size:cover;
+  color: white;
+  @media screen and (min-width: 1200px) {
+    padding-block:  calc(1rem * var(--scale));
+  }
+.BannerPageInter_title{
+        font-family: var(--titleFont);
+        margin-inline:auto;
+        font-size:2rem;
+        text-align:center;
+        color: white;
+      }
+.BannerPageInter_title_destacado{
+  display:inline-flex;
+  color: var(--secondary);
+}
+
+        .BannerPageInter_title > p{
+      
+        display:inline;}
+
+   @media screen and (min-width: 1200px) {
+     .BannerPageInter_title{
+         padding-block:calc(4rem * var(--scale));
+          width: calc(80rem * var(--scale));
+          font-size: calc(4rem * var(--scale));
+      }
+
+
+      
+  
+  }
+}
+

@@ -1,0 +1,163 @@
+{{ 'BannerPageInter.css' | asset_url | stylesheet_tag }}
+
+
+
+<!-- Welcome section starts -->
+
+
+  <div class="container-general AboutSection">
+    <article class="AboutCard">
+      <h1 class="AboutCard_text-title2">
+        {{ section.settings.aboutCardTitle}}
+      </h1>
+     <picture class="AboutCard_img">
+
+          <img
+         srcset="{{ section.settings.aboutCardImage | image_url: width: section.settings.aboutCardImage_width }}, {{ section.settings.aboutCardImage | image_url: width: section.settings.aboutCardImage }} 2x"
+           src="{{ section.settings.aboutCardImage}}"
+           alt="{{ section.settings.aboutCardImage.alt | escape }}"
+           loading="lazy"
+            width="{{ section.settings.aboutCardImage.width }}"
+           height="{{ section.settings.aboutCardImage.height }}"
+      >
+    
+  </picture>
+      
+
+      <section class="AboutCard_text">
+        <h1 class="AboutCard_text-title">
+        {{ section.settings.aboutCardTitle}}
+      </h1>
+        {{ section.settings.aboutCardText}}
+      </section >
+
+      </article>
+    
+  </div>
+
+ 
+
+<!-- Welcome section ends -->
+
+{% stylesheet %}
+
+  .AboutSection{
+    margin-bottom:3rem;
+
+  .AboutCard{
+    display: flex;
+    flex-direction:column;
+    
+      @media screen and (min-width: 1200px) {
+          gap:calc(10rem * var(--scale)) !important;
+          flex-direction:row;
+          background:white;
+          border-left: solid calc(0.8rem * var(--scale)) var(--primary);
+          border-right: solid calc(0.8rem * var(--scale));
+      }
+
+    .AboutCard_img{
+      width:100%;
+      overflow:hidden;
+      border-radius: 1.5rem;
+       @media screen and (min-width: 1200px) {
+         width:30%;
+         border-radius: 0px;
+      }
+    
+      
+      & > img{
+        width:100%;
+        height:100%;
+        border-radius: 1.5rem;
+        object-fit: cover;
+         @media screen and (min-width: 1200px) {
+         border-radius: 0rem;
+      }
+      }
+    }
+
+    & > .AboutCard_text-title2{
+       margin: 2rem 0px !important;
+       text-align:left;
+       font-size:2rem;
+       color:var(--primary);
+       text-transform: uppercase;
+      @media screen and (min-width: 1200px) {
+        display:none !important;
+      }
+     }
+   .AboutCard_text{
+      display: flex;
+     justify-content: center;
+     flex-direction: column;
+      width:100% !important;
+     @media screen and (min-width: 1200px) {
+     
+     width:60% !important;
+     padding:calc(10rem * calc(--scale)) calc(10rem * calc(--scale));
+     padding-right:  calc(20rem * calc(--scale));
+     }
+
+     
+       
+     & > .AboutCard_text-title{
+       display:none;
+       margin:0px !important;
+       text-align:left;
+       font-size:calc(3rem * var(--scale));
+       color:var(--primary);
+       text-transform: uppercase;
+        @media screen and (min-width: 1200px) {
+        display:inline-block !important;
+      }
+     }
+     & > p{
+       padding-inline:calc(10rem * calc(--scale)) !important; 
+     }
+   }
+  }
+      }
+
+  .shopify-section:nth-child(even) .AboutSection  .AboutCard{
+    border-right: solid 0px red !important;
+     }
+  .shopify-section:nth-child(2n+1) .AboutSection  .AboutCard{
+    border-left: solid 0px red !important;
+    
+ 
+     }
+ 
+{% endstylesheet %}
+
+
+{% schema %}
+  {
+    "name": "AboutCard",
+    "settings": [
+       {
+    "id": "aboutCardImage",
+    "type": "image_picker",
+    "label": "Image"
+  },
+ {
+    "id": "aboutCardTitle",
+    "type": "text",
+    "label": "title"
+  },
+ {
+    "id": "aboutCardText",
+    "type": "richtext",
+    "label": "Description"
+  }
+    ],"presets": [
+{
+"name": "AboutCard",
+"category": "ADVANCED LAYOUT"
+}
+]
+  }
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}

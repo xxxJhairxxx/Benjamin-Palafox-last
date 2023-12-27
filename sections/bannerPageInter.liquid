@@ -1,0 +1,49 @@
+{{ 'BannerPageInter.css' | asset_url | stylesheet_tag }}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+
+<!-- Welcome section starts -->
+
+
+<section class="BannerPageInter">
+
+
+<h1 class="BannerPageInter_title" >
+<span class="BannerPageInter_title_destacado">{{ section.settings.titleFirts }}</span>
+{{section.settings.titleBanner}}
+<span class="BannerPageInter_title_destacado">{{ section.settings.titleEnd }}</span>
+</h1>
+
+</section>
+<!-- Welcome section ends -->
+{% schema %}
+{
+"name": "BannerPageInter",
+"settings": [
+  {
+    "id": "titleFirts",
+    "type": "text",
+    "label": "Titulo destacado"
+  },
+  {
+    "id": "titleBanner",
+    "type": "richtext",
+    "label": "Titulo central"
+  },
+   {
+    "id": "titleEnd",
+    "type": "text",
+    "label": "Titulo final"
+  }
+],
+"presets": [
+{
+"name": "bannerPageInter",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
