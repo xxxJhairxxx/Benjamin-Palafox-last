@@ -235,6 +235,14 @@
         "padding_bottom": 100
       }
     },
+    "6a5bb646-8d74-4be1-99c8-59936a554dac": {
+      "type": "sectionMiddle",
+      "settings": {
+        "titleStartMiddle": "Experience the unique style of our sportswear collection.",
+        "titleEndMiddle": "",
+        "titleContentMiddle": "<p>Our sportswear is specifically designed to help you dominate your workout, whether you're pushing yourself in the gym or pushing your limits in the great outdoors.<\/p>"
+      }
+    },
     "645e7aaf-cf7d-4888-82b3-03935542569d": {
       "type": "reviews",
       "blocks": {
@@ -321,6 +329,7 @@
     "46e6b466-a387-44ea-945d-e28bd4d1d0d2",
     "d4e53bdf-33d7-4146-b235-d83944ee457f",
     "d615e02d-817f-4fbe-9b76-73bad9d613d7",
+    "6a5bb646-8d74-4be1-99c8-59936a554dac",
     "645e7aaf-cf7d-4888-82b3-03935542569d",
     "0c6885e0-52a0-4f0a-a0da-cd2ddf0ce44e"
   ]
